@@ -2,11 +2,10 @@
   padding: 10px;
 }
 
-.btn-delete {
-  background-color: red;
-  color: #fff;
-  border: 1px solid #e7e7e8;
-
+.btn-save {
+  background-color: #fff;
+  color: orange;
+  border: none;
   font-size: 18px;
   border-radius: 10px;
   cursor: pointer;
@@ -15,7 +14,7 @@
 .btn-cancel {
   background-color: #fff;
   color: #000;
-  border: 1px solid #e7e7e8;
+  border: none;
   font-size: 18px;
   border-radius: 10px;
   cursor: pointer;

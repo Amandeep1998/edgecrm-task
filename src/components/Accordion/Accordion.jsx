@@ -1,12 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Accordion.css";
 import Questions from "../Questions/Questions";
 import Button from "../Button/Button";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { Context } from "../../context/context";
 
-const Accordion = ({ headline, questions, accordId, isOpen, isEditable }) => {
+import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
+
+const Accordion = ({
+  headline,
+  questions,
+  accordId,
+  isOpen,
+  isEditable,
+  showBtns,
+}) => {
   const { data, setData } = useContext(Context);
+  console.log(showBtns, "showbtns");
 
   const onSave = () => {
     let nextAccordionEditableCheck = true;
@@ -72,6 +82,21 @@ const Accordion = ({ headline, questions, accordId, isOpen, isEditable }) => {
     });
   };
 
+  const onOpenOrClose = () => {
+    setData(() => {
+      let newData = data.map((item) => {
+        if (item.accordId == accordId) {
+          return {
+            ...item,
+            isOpen: !item.isOpen,
+          };
+        } else return item;
+      });
+
+      return newData;
+    });
+  };
+
   return (
     <>
       <div
@@ -79,28 +104,13 @@ const Accordion = ({ headline, questions, accordId, isOpen, isEditable }) => {
           !isEditable ? "accordion-container-disabled" : ""
         }`}
       >
-        <div className="flex">
+        <div className="headline-container">
           <div className="accordion-headline">{headline}</div>
-          <div>
-            {true ? (
-              <FaPlus
-                onClick={() => {
-                  setData(() => {
-                    let newData = data.map((item) => {
-                      if (item.accordId == accordId) {
-                        return {
-                          ...item,
-                          isOpen: !item.isOpen,
-                        };
-                      } else return item;
-                    });
-
-                    return newData;
-                  });
-                }}
-              />
+          <div className="accordion-collapse-icon">
+            {!isOpen ? (
+              <IoIosArrowForward fontSize={20} onClick={onOpenOrClose} />
             ) : (
-              <FaMinus />
+              <IoIosArrowDown fontSize={20} onClick={onOpenOrClose} />
             )}
           </div>
         </div>
@@ -119,10 +129,20 @@ const Accordion = ({ headline, questions, accordId, isOpen, isEditable }) => {
                 );
               })}
 
-            <div className="accordion-btns">
-              <Button onBtnClick={onSave} btnName={"Save"} />
-              <Button onBtnClick={onCancel} btnName={"Cancel"} />
-            </div>
+            {showBtns ? (
+              <div className="accordion-btns">
+                <Button
+                  className={"btn-save"}
+                  onBtnClick={onSave}
+                  btnName={"Save"}
+                />
+                <Button
+                  className="btn-cancel"
+                  onBtnClick={onCancel}
+                  btnName={"Cancel"}
+                />
+              </div>
+            ) : null}
           </div>
         ) : null}
       </div>

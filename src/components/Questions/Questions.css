@@ -1,4 +1,13 @@
 .question-container {
-  display: flex;
   margin-bottom: 10px;
+}
+
+.question {
+  margin-bottom: 10px;
+}
+
+.radio-btns {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
 }

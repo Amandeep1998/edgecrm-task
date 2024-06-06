@@ -21,6 +21,7 @@ const Questions = ({ question, id, accordId, answer }) => {
         if (item.accordId == accordId) {
           return {
             ...item,
+
             questions: item.questions.map((elem) => {
               if (elem.id == e.target.name) {
                 return {
@@ -45,8 +46,8 @@ const Questions = ({ question, id, accordId, answer }) => {
 
   return (
     <div className="question-container">
-      <div>{question}</div>
-      <div className="flex">
+      <div className="question">{question}</div>
+      <div className="flex radio-btns">
         <Radio
           label={"Yes"}
           value={"yes"}

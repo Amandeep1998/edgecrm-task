@@ -6,6 +6,17 @@ import { Context } from "../../context/context";
 const Home = () => {
   const { data, setData } = useContext(Context);
 
+  const showBtns = (questions) => {
+    let isShowBtns = false;
+    questions.forEach((elem) => {
+      if (elem.answer === "yes" || elem.answer === "na") {
+        isShowBtns = true;
+      }
+    });
+
+    return isShowBtns;
+  };
+
   return (
     <div className="home-container">
       {data &&
@@ -18,6 +29,7 @@ const Home = () => {
               accordId={item.accordId}
               isOpen={item.isOpen}
               isEditable={item.isEditable}
+              showBtns={showBtns(item.questions)}
             />
           );
         })}

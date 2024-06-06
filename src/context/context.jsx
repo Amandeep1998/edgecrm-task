@@ -18,6 +18,7 @@ export const ContextProvider = ({ children }) => {
         accordId: 1,
         isEditable: true,
         isOpen: true,
+        showBtns: false,
         questions: [
           {
             id: 1,
@@ -58,6 +59,8 @@ export const ContextProvider = ({ children }) => {
         accordId: 2,
         isEditable: false,
         isOpen: false,
+        showBtns: false,
+
         questions: [
           {
             id: 6,
@@ -97,6 +100,8 @@ export const ContextProvider = ({ children }) => {
         accordId: 3,
         isEditable: false,
         isOpen: false,
+        showBtns: false,
+
         questions: [
           {
             id: 11,
@@ -137,6 +142,8 @@ export const ContextProvider = ({ children }) => {
         accordId: 4,
         isEditable: false,
         isOpen: false,
+        showBtns: false,
+
         questions: [
           {
             id: 16,
